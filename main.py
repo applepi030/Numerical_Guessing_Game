@@ -1,6 +1,5 @@
 import random
 from importlib.metadata import pass_none
-
 import foolproof
 
 print('Добро пожаловать в числовую угадайку')
@@ -10,14 +9,13 @@ guess_digit = pass_none(main_digit)
 counter = 0
 
 while guess_digit != main_digit:
-    guess_digit = int(input())
-    foolproof.check(guess_digit)
-    def is_valid():
-        if 1 <= guess_digit <= 100:
-            return True
-        else:
-            return False and 'А может быть все-таки введем целое число от 1 до 100?'
+    guess_digit = input()
 
+    if not foolproof.is_valid(guess_digit):
+        print('А может быть все-таки введем целое число от 1 до 100?')
+        continue
+
+    guess_digit = int(guess_digit)
 
     if guess_digit == main_digit:
         print('Вы угадали, поздравляем!')
